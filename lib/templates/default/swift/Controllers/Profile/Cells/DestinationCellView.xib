@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Light.ttf">
+            <string>Quicksand-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterTravelGroupsVC" customModule="NT_Dev" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleAspectFill" restorationIdentifier="DestinationCellView" id="iN0-l3-epB" customClass="DestinationCell" customModule="NT_Dev" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="egypt_color" translatesAutoresizingMaskIntoConstraints="NO" id="ZIW-cb-MdB">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                </imageView>
+                <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6C-j1-5G0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DUZ-yF-H2J">
+                            <rect key="frame" x="157" y="45" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="ImN-yp-2bS"/>
+                                <constraint firstAttribute="width" constant="60" id="vBT-aO-c3d"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="DUZ-yF-H2J" firstAttribute="centerY" secondItem="T6C-j1-5G0" secondAttribute="centerY" id="5XI-WP-f5H"/>
+                        <constraint firstItem="DUZ-yF-H2J" firstAttribute="centerX" secondItem="T6C-j1-5G0" secondAttribute="centerX" id="cIr-3l-AB4"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="249" verticalHuggingPriority="248" text="Egipto" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmq-b1-dok" customClass="BottomAlignedLabel" customModule="NT_Dev" customModuleProvider="target">
+                    <rect key="frame" x="20" y="59" width="335" height="32.5"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Light" family="Quicksand" pointSize="26"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cmq-b1-dok" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="DWl-x3-DSL"/>
+                <constraint firstItem="cmq-b1-dok" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="J54-jr-Ciz"/>
+                <constraint firstItem="ZIW-cb-MdB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="N89-SN-5g0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ZIW-cb-MdB" secondAttribute="bottom" id="QHQ-By-FPQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="T6C-j1-5G0" secondAttribute="bottom" id="Tqy-qe-vOv"/>
+                <constraint firstItem="ZIW-cb-MdB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="YQi-Wi-Fxf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZIW-cb-MdB" secondAttribute="trailing" id="g4G-Av-AB8"/>
+                <constraint firstItem="T6C-j1-5G0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gJN-3H-ddk"/>
+                <constraint firstItem="T6C-j1-5G0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="jZF-Mk-OHL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cmq-b1-dok" secondAttribute="trailing" constant="20" id="oZS-k2-cNC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="T6C-j1-5G0" secondAttribute="trailing" id="wLo-sS-qFc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="5"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="blueGradientView" destination="T6C-j1-5G0" id="B8q-Bn-4iB"/>
+                <outlet property="destinationBackgroundImage" destination="ZIW-cb-MdB" id="uEs-ch-6kk"/>
+                <outlet property="destinationLabel" destination="cmq-b1-dok" id="2Y8-v2-0FB"/>
+                <outlet property="tickImage" destination="DUZ-yF-H2J" id="9Jz-YO-bco"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="-208"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="egypt_color" width="1280" height="823"/>
+    </resources>
+</document>

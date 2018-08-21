@@ -1,0 +1,6 @@
+require 'mvcgen/generator'
+require 'mvcgen/filemanager'
+require 'mvcgen/dirutils'
+require 'mvcgen/version'
+require 'mvcgen/mvcthor'
+require 'mvcgen/templatemanager'

@@ -1,0 +1,73 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+
+def commom_pods
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for NotATour
+  pod 'CryptoSwift'
+  pod 'SwiftyJSON'
+  pod 'TextFieldEffects'
+  pod 'NotificationBannerSwift'
+  pod 'RAMAnimatedTabBarController'
+  pod 'ObjectMapper', '~> 3.1'
+  pod 'DKImagePickerController'
+  pod 'SwiftDate', '~> 4.5.1'
+  pod 'NVActivityIndicatorView'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'PMAlertController'
+  pod 'ActionSheetPicker-3.0', '~> 2.3.0'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'paper-onboarding', '~> 4.0.2'
+  pod 'Pastel'
+  
+  # Alamofire
+  pod 'Alamofire', '~> 4.4'
+  pod 'AlamofireObjectMapper', '~> 5.0'
+  
+  
+  # AWS
+  pod 'AWSCognito'
+  pod 'AWSCognitoIdentityProvider'
+  pod 'AWSS3'
+  
+  
+  # AlamofireNetworkActivityLogger
+  pod 'AlamofireNetworkActivityLogger', '~> 2.0'
+  
+  # Facebook
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  
+  # OneSignal
+  pod 'OneSignal'
+  
+  # Fabric
+  pod 'Fabric'
+  pod 'Crashlytics'
+
+end
+
+target 'MVCGEN' do
+  use_frameworks!
+  commom_pods
+end
+
+# target 'MVCGENTest' do
+#   inherit! :search_paths
+#   # Pods for testing
+# end
+
+# target 'MVCGENUITests' do
+#   inherit! :search_paths
+#   # Pods for testing
+# end
+
+# target 'OneSignalNotificationServiceExtension' do
+#   use_frameworks!
+#   pod 'OneSignal'
+# end
+
+
+

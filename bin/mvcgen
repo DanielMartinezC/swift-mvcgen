@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+#require 'rubygems'
+require 'mvcgen/mvcthor'
+
+puts "------- MVC GENERATOR---------\n"
+puts ARGV
+MVCgen::MVCThor.start(ARGV)
+puts "--------------------------------\n"

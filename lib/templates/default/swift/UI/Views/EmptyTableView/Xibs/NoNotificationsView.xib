@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Bold.ttf">
+            <string>Quicksand-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="eTd-JD-hIu" customClass="NoNotificationView" customModule="NT_Dev" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No recent activity registered" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pmU-qG-kBF">
+                    <rect key="frame" x="86" y="165" width="203" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="203" id="0L0-tH-p96"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="20"/>
+                    <color key="textColor" red="0.25098039220000001" green="0.92156862750000001" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificaciones" translatesAutoresizingMaskIntoConstraints="NO" id="rmj-od-mgK">
+                    <rect key="frame" x="165" y="80" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="EI4-9S-Szj"/>
+                        <constraint firstAttribute="width" constant="45" id="Nzm-MX-cOh"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rmj-od-mgK" firstAttribute="top" secondItem="eTd-JD-hIu" secondAttribute="top" constant="80" id="Xoi-Kz-QkY"/>
+                <constraint firstItem="pmU-qG-kBF" firstAttribute="top" secondItem="rmj-od-mgK" secondAttribute="bottom" constant="40" id="Z9L-oM-fy1"/>
+                <constraint firstItem="pmU-qG-kBF" firstAttribute="centerX" secondItem="eTd-JD-hIu" secondAttribute="centerX" id="pfS-tc-l6F"/>
+                <constraint firstItem="rmj-od-mgK" firstAttribute="centerX" secondItem="eTd-JD-hIu" secondAttribute="centerX" id="rr3-zd-ysf"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="VXY-IS-dvF"/>
+            <connections>
+                <outlet property="emptyIcon" destination="rmj-od-mgK" id="OTO-dA-Fm3"/>
+                <outlet property="emptyMessage" destination="pmU-qG-kBF" id="Av7-1T-Jcd"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="210"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="notificaciones" width="130" height="88"/>
+    </resources>
+</document>

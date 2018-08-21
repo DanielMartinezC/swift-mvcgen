@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Development</key>
+	<dict>
+		<key>AWSIdentityPoolId</key>
+		<string></string>
+		<key>S3BucketName</key>
+		<string></string>
+		<key>ServicesURL</key>
+		<string></string>
+		<key>OneSignalAppId</key>
+		<string></string>
+		<key>ServicesVersion</key>
+		<string></string>
+	</dict>
+	<key>QA</key>
+	<dict>
+		<key>AWSIdentityPoolId</key>
+		<string></string>
+		<key>S3BucketName</key>
+		<string></string>
+		<key>ServicesURL</key>
+		<string></string>
+		<key>OneSignalAppId</key>
+		<string></string>
+		<key>ServicesVersion</key>
+		<string></string>
+	</dict>
+	<key>Staging</key>
+	<dict>
+		<key>AWSIdentityPoolId</key>
+		<string></string>
+		<key>S3BucketName</key>
+		<string></string>
+		<key>ServicesURL</key>
+		<string></string>
+		<key>OneSignalAppId</key>
+		<string></string>
+		<key>ServicesVersion</key>
+		<string></string>
+	</dict>
+	<key>Production</key>
+	<dict>
+		<key>AWSIdentityPoolId</key>
+		<string></string>
+		<key>S3BucketName</key>
+		<string></string>
+		<key>ServicesURL</key>
+		<string></string>
+		<key>OneSignalAppId</key>
+		<string></string>
+		<key>ServicesVersion</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

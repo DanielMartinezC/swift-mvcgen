@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Bold.ttf">
+            <string>Quicksand-Bold</string>
+        </array>
+        <array key="Quicksand-Medium.ttf">
+            <string>Quicksand-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Zmo-vl-sTD" customClass="EmptyTableLabelView" customModule="NT_Dev" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="330"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't find any results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nuy-YD-f33">
+                    <rect key="frame" x="86" y="145" width="203" height="50"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="203" id="r3R-LV-3CT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="20"/>
+                    <color key="textColor" red="0.25098039215686274" green="0.92156862745098034" blue="0.6470588235294118" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="by9-A4-Z7l">
+                    <rect key="frame" x="165" y="80" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="rWC-u5-Uvg"/>
+                        <constraint firstAttribute="width" constant="45" id="zQZ-CB-Snb"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure this destination exist?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n45-cG-wqU">
+                    <rect key="frame" x="50" y="225" width="275" height="45"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="18"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.38" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="nuy-YD-f33" firstAttribute="centerX" secondItem="Zmo-vl-sTD" secondAttribute="centerX" id="4hh-6I-kvC"/>
+                <constraint firstItem="xSx-wq-qUv" firstAttribute="trailing" secondItem="n45-cG-wqU" secondAttribute="trailing" constant="50" id="4uP-T1-lpF"/>
+                <constraint firstItem="n45-cG-wqU" firstAttribute="leading" secondItem="xSx-wq-qUv" secondAttribute="leading" constant="50" id="GAo-7c-7uB"/>
+                <constraint firstItem="by9-A4-Z7l" firstAttribute="top" secondItem="Zmo-vl-sTD" secondAttribute="top" constant="80" id="PeS-qP-XoB"/>
+                <constraint firstItem="nuy-YD-f33" firstAttribute="top" secondItem="by9-A4-Z7l" secondAttribute="bottom" constant="20" id="TGx-WQ-Zue"/>
+                <constraint firstItem="xSx-wq-qUv" firstAttribute="bottom" secondItem="n45-cG-wqU" secondAttribute="bottom" constant="60" id="Y5V-xu-HRV"/>
+                <constraint firstItem="by9-A4-Z7l" firstAttribute="centerX" secondItem="Zmo-vl-sTD" secondAttribute="centerX" id="nCK-Jl-BUg"/>
+                <constraint firstItem="n45-cG-wqU" firstAttribute="top" secondItem="nuy-YD-f33" secondAttribute="bottom" constant="30" id="oYD-31-QHC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="xSx-wq-qUv"/>
+            <connections>
+                <outlet property="iconImageView" destination="by9-A4-Z7l" id="V3h-6e-pk0"/>
+                <outlet property="label" destination="n45-cG-wqU" id="9bh-WR-Z6Q"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="210"/>
+        </view>
+    </objects>
+</document>
