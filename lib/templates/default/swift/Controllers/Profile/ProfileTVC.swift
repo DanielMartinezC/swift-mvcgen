@@ -25,7 +25,6 @@ struct UserHistory{
 
 class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadProtocol, UITextViewDelegate {
     
-    
     // MARK: - Outlets
     
     @IBOutlet weak var editProfileImageButton: UIButton! {
@@ -117,19 +116,14 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     
     // MARK: - Properties
     
-    let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
     
     var profileImageChanged: Bool = false
 
     var favorites: [Favorite] = []{
         didSet{
-            if self.favorites.count > 0{
-                self.noFavoritesView.isHidden = true
-                self.favoritesCollectionView.isHidden = false
-            } else {
-                self.noFavoritesView.isHidden = false
-                self.favoritesCollectionView.isHidden = true
-            }
+            self.noFavoritesView.isHidden = self.favorites.count > 0 ? true : false
+            self.favoritesCollectionView.isHidden = self.favorites.count > 0 ? false : true
         }
     }
     
@@ -137,13 +131,8 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     
     var userHistory: [UserHistory] = []{
         didSet{
-            if self.userHistory.count > 0{
-                self.noTravelsView.isHidden = true
-                self.historyTripsCollectionView.isHidden = false
-            } else {
-                self.noTravelsView.isHidden = false
-                self.historyTripsCollectionView.isHidden = true
-            }
+            self.noTravelsView.isHidden = self.userHistory.count > 0 ? true : false
+            self.historyTripsCollectionView.isHidden = self.userHistory.count > 0 ? false : true
         }
     }
     
@@ -155,19 +144,19 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     
     var newNotifications = false{
         didSet{
-            if newNotifications{
-                self.notificationBadgeView.isHidden = false
-            } else {
-                self.notificationBadgeView.isHidden = true
-            }
+            self.notificationBadgeView.isHidden = !newNotifications
         }
     }
     
     var notifications = [Notif]()
     
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.fetchData()
+
         self.setupViews()
         
         if #available(iOS 11.0, *) {
@@ -183,23 +172,30 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
         hideKeyboardWhenTappedAround()
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleFavoritesUpdated(_:)), name: Notification.Name("FavoritesUpdated"), object: nil)
-        
-        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //self.updateFavourites()
+
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = true
         
         setNotificationBadge()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
+        self.aboutMeTextView.layoutIfNeeded()
+        self.aboutMeTextView.changeBorderColor(newColor: UIColor.white)
     }
     
-    func setNotificationBadge(){
-        // TODO: enable when done
+    // MARK: - Private
+
+    private func setNotificationBadge(){
+        
+        // TODO: Enable when done
 //        APIManager.sharedInstance.getNotifications(){
 //            result, notifications in
 //            self.notifications = notifications.sorted(by: {$0.createdDate.compare($1.createdDate) == .orderedDescending})
@@ -217,8 +213,10 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
 //        }
     }
    
-    
-    func fetchData() {
+    private func fetchData() {
+
+        // TODO: change for local or remote user data
+
         self.profileImageLoading.startAnimating()
         
         self.emailTextField.text = "John"
@@ -228,19 +226,20 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
         self.phoneCountry = "Uruguay"
         self.phonePrefix.text = "+598"
         
-        self.aboutMeTextView.text = NSLocalizedString("Add something about yourself!", comment: "")
+        self.aboutMeTextView.text = "Add something about yourself!"
         self.aboutMeTextView.textColor = UIColor.lightGray
         
         self.profileImageLoading.stopAnimating()
+
         self.editProfileImageView.image = Asset.userTestPhoto.image
         
-        // TODO: Add favorites and history
+        // TODO: Add favorites and history or something like that if needed
 
     }
     
-    func setupViews() {
+    private func setupViews() {
         
-        self.notificationImage.image = UIImage(named: "notification")
+        self.notificationImage.image = Asset.notification.image
         
         self.logoutButton.layoutIfNeeded()
         self.logoutButton.layer.cornerRadius = self.logoutButton.frame.height/7
@@ -271,21 +270,16 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
         historyTripsCollectionView.dataSource = self
         historyTripsCollectionView.isMultipleTouchEnabled = false
         historyTripsCollectionView.allowsSelection = false
+        
         let destNib = UINib(nibName: "DestinationCellView", bundle: nil)
         historyTripsCollectionView.register(destNib, forCellWithReuseIdentifier: "DestinationCellView")
 
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        self.aboutMeTextView.layoutIfNeeded()
-        self.aboutMeTextView.changeBorderColor(newColor: UIColor.white)
-    }
-    
     // MARK: - TextViewDelegate
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.white
@@ -293,8 +287,9 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+
         if textView.text.isEmpty {
-            textView.text = NSLocalizedString("Add something about yourself!", comment: "")
+            textView.text = "Add something about yourself!"
             textView.textColor = UIColor.lightGray
         }
     }
@@ -321,22 +316,24 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     }
     
     override var prefersStatusBarHidden: Bool {
+
         return navigationController?.isNavigationBarHidden ?? false
     }
     
     // MARK: - Actions
     
-    // function which is triggered when handleTap is called
+    /// Function which is triggered when handleTap is called
     @objc func handleNotificationTap(_ sender: UITapGestureRecognizer) {
-        self.animateViewBounceAndZoom(viewToAnimate: self.notificationButton)
+
         guard let vc = self.homeStoryboard.instantiateViewController(withIdentifier: "NotificationsVC") as? NotificationsVC else { return }
+        self.animateViewBounceAndZoom(viewToAnimate: self.notificationButton)
         vc.delegate = self
         vc.notifications = self.notifications
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func setAsRead(value: Bool) {
-        // TODO: enable when done
+        // TODO: Enable when done
 //        if value {
 //            APIManager.sharedInstance.readNotifications(){
 //                result in
@@ -361,7 +358,6 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
                     
                     self.profileImageChanged = true
                     self.editProfileImageView.image = image
-                    
                 })
             }
         }
@@ -369,9 +365,9 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     }
     
     @IBAction func saveDataTapped(_ sender: UIButton) {
+
         if self.validateData(){
             // TODO
-        
         }
     }
     
@@ -420,42 +416,25 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
 //
 //        }
 //    }
-    
-    func isValidEmail(_ testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
-    }
-    
-    func isValidName(_ testStr:String) -> Bool {
-        let nameRegEx = "[A-Za-z\\s]+"
-        let nameTest = NSPredicate(format:"SELF MATCHES %@", nameRegEx)
-        return nameTest.evaluate(with: testStr)
-    }
-    
-    func isValidPhone(_ testStr:String) -> Bool {
-        let phoneRegEx = "[0-9]*"
-        let phoneTest = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
-        return phoneTest.evaluate(with: testStr)
-    }
-    
+
     func validateData() -> Bool{
-        if let name = self.nameTextField.text, let lastname = self.lastnameTextField.text, let phone = self.phoneTextField.text {
-            if !isValidName(name){
-                APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid name", comment: ""), and: "")
-                return false
-            } else if !isValidName(lastname){
-                APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid lastname", comment: ""), and: "")
-                return false
-            } else if !isValidPhone(phone.trimmingCharacters(in: .whitespacesAndNewlines)) {
-                APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid phone number", comment: ""), and: "")
-                return false
-            }
+        if !self.nameTextField.isName(){
+            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid name", comment: ""), and: "")
+            return false
+        } 
+        if !self.lastnameTextField.isName(){
+            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid lastname", comment: ""), and: "")
+            return false
+        }
+        if !self.phoneTextField.isPhone() {
+            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid phone number", comment: ""), and: "")
+            return false
         }
         return true
     }
     
     @IBAction func selectCountryTapped(_ sender: UIButton) {
+        
         if self.countries.isEmpty {
             // TODO: Set countries
         } else {
@@ -464,6 +443,7 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     }
     
     func addActionSheetPicker(_ sender: UIButton){
+
         let prevCountryValue = self.phonePrefix.text
         let prevPhoneCountryValue = self.phoneCountry
         let acp = ActionSheetStringPicker(title: "", rows: self.countries.map{$0.name}, initialSelection: 0, doneBlock: {
@@ -495,13 +475,13 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     }
     
     @IBAction func aboutUsTapped(_ sender: UIButton) {
+
         guard let vc = self.homeStoryboard.instantiateViewController(withIdentifier: "AboutUsVC") as? AboutUsVC else { return }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func handleFavoritesUpdated(_ notification: Foundation.Notification) {
         //TODO: Get favorites again
-    
     }
     
 }
@@ -539,36 +519,36 @@ extension ProfileTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCollectionCell", for: indexPath) as! FavoriteCollectionCell
             
             let favorite = favorites[indexPath.row]
+
             cell.destinationLabel.text = favorite.name
             cell.removeButton.addTarget(self, action: #selector(handleRemoveButton(_:)), for: .touchUpInside)
+
             return cell
-            
         } else {
+
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DestinationCellView", for: indexPath) as! DestinationCell
             
             let history = userHistory[indexPath.row]
-            cell.destinationLabel.text = history.name.capitalized
-            cell.destinationBackgroundImage.kf.indicatorType = .activity
-            cell.destinationBackgroundImage.kf.setImage(with: URL(string: history.thumbnailUrl), options: [.transition(.fade(0.2))])
-//            for dest in travelGroup.destinations {
-//            cell.cityLabel.text = "\(cell.cityLabel.text!)\(travelGroup.destinations[0].destination?.city ?? ""), "
-//            }
-//            cell.cityLabel.text?.removeLast(2)
+
+            cell.configure(with: userHistory)
+
             return cell
         }
     }
     
     @objc func handleRemoveButton(_ sender: UIButton) {
+
         let touchPoint = sender.convert(CGPoint.zero, to: self.favoritesCollectionView)
         if let clickedIndexPath = self.favoritesCollectionView.indexPathForItem(at: touchPoint) {
             self.noMoreFavorites.append(favorites[clickedIndexPath.row])
             let removeDest = self.favorites.remove(at: clickedIndexPath.row)
             self.noMoreFavorites.append(removeDest)
             self.favoritesCollectionView.deleteItems(at: [clickedIndexPath])
-            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         if collectionView == favoritesCollectionView {
             let size = (favorites[indexPath.row].name as NSString).size(withAttributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16.0)])
             return CGSize(width: size.width + 65, height: 40)

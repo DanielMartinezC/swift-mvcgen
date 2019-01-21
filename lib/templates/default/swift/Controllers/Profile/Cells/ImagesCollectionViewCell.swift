@@ -7,9 +7,21 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImagesCollectionViewCell: UICollectionViewCell {
+
+    // MARK: - Outlets
+
     @IBOutlet weak var imageOutlet: UIImageView!
+
+    // MARK: - Life cycle
+
+    func configure(with picture: Pic) {
+
+        self.imageOutlet.kf.indicatorType = .activity
+        self.imageOutlet.kf.setImage(with: URL(string : picture.url))
+    }
     
 }
 

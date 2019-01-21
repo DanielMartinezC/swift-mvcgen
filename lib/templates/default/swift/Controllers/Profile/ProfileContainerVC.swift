@@ -10,12 +10,22 @@ import UIKit
 
 class ProfileContainerVC: UIViewController {
     
+    // MARK: - Outlets
+
     @IBOutlet weak var gradientView: UIView!
     
     @IBOutlet weak var containerView: UIView!
+
+    // MARK: - Properties
     
-    let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+
+    private lazy var profileTVC: ProfileTVC = { 
+        return self.homeStoryboard.instantiateViewController(withIdentifier: "ProfileTVC") as! ProfileTVC 
+    }()
     
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,31 +33,24 @@ class ProfileContainerVC: UIViewController {
         
         self.add(asChildViewController: self.profileTVC)
     }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-//        self.gradientView.backgroundColor = ColorConstants.backgroundColor
-        
+                
         self.gradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.thirdGradientColor], locations: [0, 0.5])
-        
     }
+
+    // MARK: - Private
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
+
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
-        
     }
     
-    private lazy var profileTVC: ProfileTVC = {
-        
-        return self.homeStoryboard.instantiateViewController(withIdentifier: "ProfileTVC") as! ProfileTVC
-        
-    }()
-    
     private func add(asChildViewController viewController: UIViewController) {
-        addChildViewController(viewController)
         
         containerView.addSubview(viewController.view)
         
@@ -60,6 +63,7 @@ class ProfileContainerVC: UIViewController {
     }
     
     private func remove(asChildViewController viewController: UIViewController) {
+
         // Notify Child View Controller
         viewController.willMove(toParentViewController: nil)
         

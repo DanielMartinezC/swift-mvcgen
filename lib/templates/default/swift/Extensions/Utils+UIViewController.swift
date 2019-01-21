@@ -1,5 +1,5 @@
 //
-//  TapEffectExtension.swift
+//  Utils+UIViewController.swift
 //  MVCGEN
 //
 //  Created by Daniel Martinez on 23/7/18.
@@ -7,6 +7,8 @@
 //
 
 import UIKit
+
+// MARK: - Animations
 
 extension UIViewController {
     
@@ -44,5 +46,20 @@ extension UIViewController {
     
     func resetViewScale(viewToTransform: UIView) {
         viewToTransform.transform = CGAffineTransform.identity
+    }
+}
+
+// MARK: - Keyboard
+
+extension UIViewController {
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

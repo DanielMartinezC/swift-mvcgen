@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import SwiftDate
 
 class NotificationCell: UITableViewCell {
     
+    // MARK: - Outlets
+
     @IBOutlet weak var notificationImage: UIImageView!{
         didSet{
             self.notificationImage.layoutIfNeeded()
@@ -32,6 +35,8 @@ class NotificationCell: UITableViewCell {
         }
     }
     
+    // MARK: - Life cycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -43,9 +48,31 @@ class NotificationCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.notificationImage.image = UIImage(named: "notificaciones")
+        self.notificationImage.image =  Asset.tick.notifications
         
         self.newNotificationView.isHidden = true
+    }
+
+    func configure(with notification: Notif) {
+
+        self.notificationText.text = notification.body
+        
+        self.newNotificationView.isHidden = notification.read
+
+        let region = Region.Local()
+        let dateB = DateInRegion(absoluteDate: notification.createdDate as Date, in: region)
+        let (colloquial, _) = try! dateB.colloquialSinceNow()
+        self.notificationDate.text = colloquial
+
+        // In case you need to config something by notif type:
+        // switch notification.notifType{
+        //     case .broadcast:
+        //         break
+        //     case .generic:
+        //         break
+        // default:
+        //     break
+        // }
     }
     
 }

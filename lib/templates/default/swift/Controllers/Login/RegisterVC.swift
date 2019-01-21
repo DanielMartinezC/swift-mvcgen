@@ -11,6 +11,8 @@ import Pastel
 
 class RegisterVC: UITableViewController, UITextFieldDelegate {
     
+    // MARK: - Outlets
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var lastnameTextField: UITextField!
     @IBOutlet weak var cellphoneTextField: UITextField!
@@ -24,19 +26,18 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
     }
     @IBOutlet weak var acceptTermsButton: UIButton!
     
+    // MARK: - Properties
+
     private var pastelView: PastelView!
     
     private var termsAndConditionsAccepted: Bool = false
     
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.nameTextField.delegate = self
-        self.lastnameTextField.delegate = self
-        self.cellphoneTextField.delegate = self
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
-        self.confirmPasswordTextField.delegate = self
+        setupTextFieldsDelegate()
         
         configureText()
         
@@ -52,8 +53,8 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
         self.pastelView.startAnimation()
     }
     
-    
     // MARK: - UITextFieldDelegate
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let nextTage = textField.tag+1
@@ -72,6 +73,7 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func createTapped(_ sender: UIButton) {
+
         if self.validateForm(){
             if let email = self.emailTextField.text, let password = self.passwordTextField.text, let name = self.nameTextField.text, let lastname = self.lastnameTextField.text, let cellphone = self.cellphoneTextField.text {
                 self.createAccountButton.showLoading()
@@ -94,6 +96,7 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func termsTapped(_ sender: UIButton) {
+
         if !termsAndConditionsAccepted {
             let tintedImage = Asset.tick.image.withRenderingMode(.alwaysTemplate)
             sender.setImage(tintedImage, for: .normal)
@@ -109,44 +112,70 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func termsAndConditionsTapped(_ sender: UIButton) {
-        // TODO: View url
-        if let url = URL(string: "http://dils.com/terms-and-conditions") {
+        // TODO: URL
+        if let url = URL(string: "/terms-and-conditions") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @IBAction func alreadyHaveAccountTapped(_ sender: UIButton) {
+
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
     // MARK: - Private
+
+    private func setupTextFieldsDelegate(){
+        
+        self.nameTextField.delegate = self
+        self.lastnameTextField.delegate = self
+        self.cellphoneTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        self.confirmPasswordTextField.delegate = self
+    }
     
     private func configureText(){
         
-        self.emailTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: ""),
-                                                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+                                                                       attributes: [
+                                                                           NSAttributedStringKey.foregroundColor: UIColor.lightGray,
+                                                                           NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                           ])
         
-        self.nameTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Name", comment: ""),
-                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+        self.nameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
+                                                                          attributes: [
+                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
+                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              ])
         
-        self.lastnameTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Lastname", comment: ""),
-                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+        self.lastnameTextField.attributedPlaceholder = NSAttributedString(string: "Lastname",
+                                                                          attributes: [
+                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
+                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              ])
         
-        self.cellphoneTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Cellphone (optional)", comment: ""),
-                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+        self.cellphoneTextField.attributedPlaceholder = NSAttributedString(string: "Cellphone (optional)",
+                                                                          attributes: [
+                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray,
+                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                            ])
         
-        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
-                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+                                                                          attributes: [
+                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
+                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              ])
         
-        self.confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Confirm password", comment: ""),
-                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
-        
-        
+        self.confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Confirm password",
+                                                                            attributes: [
+                                                                                NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
+                                                                                NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                                ])
     }
     
     private func configureViews(){
+
         self.pastelView = PastelView(frame: self.tableView.bounds)
         
         // Custom Direction
@@ -167,47 +196,28 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
         
         if let password = self.passwordTextField.text, let confirmPassword = self.confirmPasswordTextField.text {
             if password != confirmPassword {
-                APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Passwords don't match", comment: ""), and: "")
+                APIHelper.sharedInstance.showErrorMessage(with: "Passwords don't match", and: "")
                 return false
             }
         }
-        if let name = self.nameTextField.text, name.isEmpty {
-            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Check the entered data", comment: ""), and: "")
+        if !self.nameTextField.isName() {
+            APIHelper.sharedInstance.showErrorMessage(with: "Check the entered data", and: "")
             return false
         }
-        if let lastname = self.lastnameTextField.text, lastname.isEmpty {
-            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Check the entered data", comment: ""), and: "")
+        if !self.lastnameTextField.isName() {
+            APIHelper.sharedInstance.showErrorMessage(with: "Check the entered data", and: "")
             return false
         }
-        if let email = self.emailTextField.text{
-            if !isValidEmail(email.trimmingCharacters(in: .whitespacesAndNewlines)) {
-                APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Invalid email", comment: ""), and: "")
-                return false
-            }
+        
+        if !self.emailTextField.isEmail(){
+            APIHelper.sharedInstance.showErrorMessage(with: "Invalid email", and: "")
+            return false
         }
         if !termsAndConditionsAccepted{
-            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Check the entered data", comment: ""), and: NSLocalizedString("You have to accept terms & conditions", comment: ""))
+            APIHelper.sharedInstance.showErrorMessage(with: "Check the entered data", and: "You have to accept terms & conditions")
             return false
         }
         return true
-    }
-    
-    private func isValidEmail(_ testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
-    }
-    
-    private func isValidName(_ testStr:String) -> Bool {
-        let nameRegEx = "[A-Za-z\\s]+"
-        let nameTest = NSPredicate(format:"SELF MATCHES %@", nameRegEx)
-        return nameTest.evaluate(with: testStr)
-    }
-    
-    private func isValidPhone(_ testStr:String) -> Bool {
-        let phoneRegEx = "[0-9]*"
-        let phoneTest = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
-        return phoneTest.evaluate(with: testStr)
     }
     
 }

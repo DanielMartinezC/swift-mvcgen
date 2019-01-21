@@ -7,19 +7,24 @@
 //
 
 import UIKit
-import Kingfisher
 
 class AboutUsImageCell: UITableViewCell {
     
+    // MARK: - Outlets
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+
+    // MARK: - Properties
+
     var pictures : [Pic] = []
-    
     var thisWidth:CGFloat = 0
-    
+
+    // MARK: - Life cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
@@ -35,31 +40,42 @@ class AboutUsImageCell: UITableViewCell {
     }
     
 }
+
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+
 extension AboutUsImageCell : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+
         return self.pictures.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imagesCollectionViewCell", for: indexPath) as! ImagesCollectionViewCell
+        
         let picture = pictures[indexPath.section]
-        cell.imageOutlet.kf.indicatorType = .activity
-        cell.imageOutlet.kf.setImage(with: URL(string : picture.url))
+
+        cell.configure(with: picture)
+
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
         self.pageControl.currentPage = indexPath.section
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         thisWidth = self.collectionView.frame.width
+
         return CGSize(width: thisWidth, height: self.collectionView.frame.height)
     }
     

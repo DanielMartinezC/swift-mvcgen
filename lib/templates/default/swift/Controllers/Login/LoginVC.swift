@@ -23,8 +23,6 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
         }
     }
     
-    private let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
-    
     @IBOutlet weak var registerButton: UIButton!{
         didSet{
             registerButton.addShadow()
@@ -37,14 +35,18 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
         }
     }
     
+    // MARK: - Properties
+
+    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+
     private var pastelView: PastelView!
     
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
+        setupTextFieldsDelegate()
         
         configureText()
         
@@ -95,12 +97,14 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
     }
     
     @IBAction func forgetPasswordTapped(_ sender: UIButton) {
+
         self.definesPresentationContext = true
         self.providesPresentationContextTransitionStyle = true
-        
         self.overlayBlurredBackgroundView()
     }
     
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "ShowForgetPassword" {
@@ -113,6 +117,7 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
     }
     
     // MARK: - UITextFieldDelegate
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField.tag == 1 {
@@ -136,6 +141,12 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
     
     // MARK: - Private
     
+    private func setupTextFieldsDelegate(){
+
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+    }
+
     private func configureText(){
         
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: ""),
@@ -193,7 +204,7 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
     
     private func validateForm() -> Bool {
         
-        if self.emailTextField.text == "" {
+        if !self.emailTextField.isEmail() {
             errorOnLogin(causeOfFailure: "email")
             return false
         }
@@ -210,13 +221,13 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
         
         switch error {
         case "email":
-            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("You must enter an email", comment: ""), and: "")
+            APIHelper.sharedInstance.showErrorMessage(with: "You must enter an email", and: "")
             break
         case "password":
-            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("You must enter a password", comment: ""), and: "")
+            APIHelper.sharedInstance.showErrorMessage(with: "You must enter a password", and: "")
             break
         default:
-            APIHelper.sharedInstance.showErrorMessage(with: NSLocalizedString("Check the entered data", comment: ""), and: "")
+            APIHelper.sharedInstance.showErrorMessage(with: "Check the entered data", and: "")
             break
         }
         
@@ -230,7 +241,6 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
         blurredBackgroundView.effect = UIBlurEffect(style: .dark)
         
         self.tableView.addSubview(blurredBackgroundView)
-        
     }
     
     @objc func removeBlurredBackgroundView() {

@@ -1,5 +1,5 @@
 //
-//  ArrayDuplicates.swift
+//  Utils+Array.swift
 //  MVCGEN
 //
 //  Created by Daniel Martinez on 23/7/18.

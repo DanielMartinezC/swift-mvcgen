@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftDate
 import Kingfisher
 import PMAlertController
 
@@ -23,7 +22,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - Properties
     
-    let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
     
     var notifications = [Notif]()
     
@@ -31,17 +30,20 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var delegate: NotificationReadProtocol?
     
+    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
         self.navigationController?.navigationBar.isHidden = true
+
+        // To avoid multi tap on cell
         self.tableView.isUserInteractionEnabled = true
         
         self.tableView.reloadData()
@@ -57,20 +59,20 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        let origImage = UIImage(named: "Back")
-        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        let tintedImage = Asset.back.image.withRenderingMode(.alwaysTemplate)
         self.backButton.setImage(tintedImage, for: .normal)
         self.backButton.tintColor = UIColor(red: 107.0/255.0, green: 255.0/255.0, blue: 192.0/255.0, alpha: 1)
     }
     
-    
-    
     @IBAction func backTapped(_ sender: UIButton) {
+
         self.navigationController?.popViewController(animated: true)
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Mark all notifications as read
         if self.isMovingFromParentViewController{
             delegate?.setAsRead(value: true)
         }
@@ -79,10 +81,12 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - Table view
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return notifications.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+
         if notifications.count > 0 {
             self.hideNoNotificationsView()
             return 1
@@ -93,6 +97,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func setNoNotificationsView(){
+        
         let emptyTableLabelViewNib = UINib(nibName: "NoNotificationsView", bundle: nil)
         let emptyTableLabelView = emptyTableLabelViewNib.instantiate(withOwner: nil, options: nil)[0] as! NoNotificationView
         emptyTableLabelView.tag = 100
@@ -101,6 +106,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func hideNoNotificationsView(){
+
         self.tableView.separatorStyle = .singleLine
         if let viewWithTag = self.tableView.viewWithTag(100) {
             viewWithTag.isHidden = true
@@ -113,33 +119,17 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         let notification = self.notifications[indexPath.row]
 
-        cell.notificationText.text = notification.body
-        
-        if !notification.read{
-            cell.newNotificationView.isHidden = false
-        }
+        cell.configure(with: notification)
 
-        let region = Region.Local()
-        let dateB = DateInRegion(absoluteDate: notification.createdDate as Date, in: region)
-        let (colloquial, _) = try! dateB.colloquialSinceNow()
-        cell.notificationDate.text = colloquial
-        switch notification.notifType{
-            case .broadcast:
-                break
-            case .generic:
-                break
-        default:
-            break
-        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        // To avoid multi tap on cell
         self.tableView.isUserInteractionEnabled = false
         
-        let selectedNotif = self.notifications[indexPath.row]
-        
-        self.selectedNotification = selectedNotif
+        self.selectedNotification = self.notifications[indexPath.row]
         
         switch selectedNotif.notifType {
         case .broadcast:

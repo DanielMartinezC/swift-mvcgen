@@ -1,5 +1,5 @@
 //
-//  Images.swift
+//  Utils+Images.swift
 //  MVCGEN
 //
 //  Created by Daniel Martinez on 23/7/18.
@@ -16,14 +16,15 @@
 
 enum Asset: String {
     case logo = "logo"
-    case banks = "Banks"
-    case hotels = "Hotels"
-    case key = "Key"
-    case shoppingCart = "Shopping-cart"
-    case stores = "Stores"
-    case wallet = "Wallet"
     case tick = "Tick"
     case userTestPhoto = "photo"
+    case notifications = "notificaciones"
+    case notification = "notification"
+    case back = "Back"
+    case welcome_01 = "Welcome_001"
+    case welcome_02 = "Welcome_002"
+    case welcome_03 = "Welcome_003"
+    case welcome_04 = "Welcome_004"
     
     var image: Image {
         let bundle = Bundle(for: BundleToken.self)

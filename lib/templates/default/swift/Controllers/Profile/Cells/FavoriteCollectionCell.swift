@@ -10,6 +10,8 @@ import UIKit
 
 class FavoriteCollectionCell: UICollectionViewCell {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var favoriteBackgroundView: UIView! {
         didSet {
             favoriteBackgroundView.layer.cornerRadius = favoriteBackgroundView.frame.size.height/2

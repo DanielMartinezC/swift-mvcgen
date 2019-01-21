@@ -1,5 +1,5 @@
 //
-//  TableViewEmptyView.swift
+//  Utils+UITableView.swift
 //  MVCGEN
 //
 //  Created by Daniel Martinez on 23/7/18.
@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 
 extension UITableView {
     

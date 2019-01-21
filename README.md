@@ -7,11 +7,9 @@ Gem to generate MVC starting modules to use them in your Swift projects
 The implementation scheme returned by this generator is hardly inspired in the example and post of vipergen, https://rubygems.org/gems/vipergen/versions/0.2.6 .
 
 - [Features](#features)
-  - [Changelog](#changelog-0.1)
-  - [Expected in version 0.2](#expected-in-version-0.2)
 - [MVC files structure](#mvc-files-structure)
 - [How to install mvcgen](#how-to-install-mvcgen)
-- [How to generate a MVC module with a given name?](#how-to-generate-a-mvc-module-with-a-given-name?)
+- [How to generate a MVC module with a given name?](#how-to-generate-a-MVC-module-with-a-given-name?)
 - [Developer tips](#developer-tips)
   - [Update the gem](#update-the-gem)
   - [Add a new template](#add-a-new-template)
@@ -151,4 +149,4 @@ updated_at: 2018-08-01
 - Rspec documentation: http://rubydoc.info/gems/rspec-expectations/frames
 - XCode Plugins: http://nshipster.com/xcode-plugins/
 - XCodeProj gem (to modify project groups structure): https://github.com/CocoaPods/Xcodeproj
-- Thor, powerful Ruby library for command line: http://whatisthor.com/ -->
+- Thor, powerful Ruby library for command line: http://whatisthor.com/

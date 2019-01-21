@@ -16,6 +16,7 @@ class TutorialVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         skipButton.isHidden = true
         
         // Uncomment next line to setup `PaperOnboarding` from code
@@ -24,6 +25,7 @@ class TutorialVC: UIViewController {
     }
     
     private func setupPaperOnboardingView() {
+
         let onboarding = PaperOnboarding()
         onboarding.dataSource = self
         onboarding.delegate = self
@@ -80,32 +82,33 @@ extension TutorialVC: PaperOnboardingDelegate {
 extension TutorialVC: PaperOnboardingDataSource {
     
     func onboardingItem(at index: Int) -> OnboardingItemInfo {
+        
         let titleFont = UIFont(name: "Quicksand-Bold", size: 30.0) ?? UIFont.boldSystemFont(ofSize: 30.0)
         let descriptionFont = UIFont(name: "Quicksand-Medium", size: 22.0) ?? UIFont.systemFont(ofSize: 22.0)
-        let welcomeLabel = NSLocalizedString("WELCOME", comment: "")
+        let welcomeLabel = "WELCOME"
         
         let list = [
-            OnboardingItemInfo(informationImage: UIImage(named: "Welcome_001")!,
+            OnboardingItemInfo(informationImage: Asset.welcome_01.image,
                                title: welcomeLabel,
-                               description: NSLocalizedString("If you like to travel comfortably ...", comment: ""),
+                               description: "First tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
                                color: Colors.firstGradientColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
-            OnboardingItemInfo(informationImage: UIImage(named: "Welcome_002")!,
+            OnboardingItemInfo(informationImage: Asset.welcome_02.image,
                                title: "",
-                               description: NSLocalizedString("... with everything arranged ...", comment: ""),
+                               description: "Second tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
                                color: Colors.secondGradientColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
-            OnboardingItemInfo(informationImage: UIImage(named: "Welcome_003")!,
+            OnboardingItemInfo(informationImage: Asset.welcome_03.image,
                                title: "",
-                               description: NSLocalizedString("... with everything planned ...", comment: ""),
+                               description: "Third tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
                                color: Colors.thirdGradientColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
-            OnboardingItemInfo(informationImage: UIImage(named: "Welcome_004")!,
+            OnboardingItemInfo(informationImage: Asset.welcome_04.image,
                                title: "",
-                               description: NSLocalizedString("... then don't travel with us!", comment: ""),
+                               description: "Final tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
                                color: Colors.textColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),

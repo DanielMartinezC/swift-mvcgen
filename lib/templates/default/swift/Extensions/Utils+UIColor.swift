@@ -1,5 +1,5 @@
 //
-//  UIColorExtensions.swift
+//  Utils+UIColor.swift
 //  MVCGEN
 //
 //  Created by Daniel Martinez on 23/7/18.

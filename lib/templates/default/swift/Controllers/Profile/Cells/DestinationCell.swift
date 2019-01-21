@@ -10,6 +10,8 @@ import UIKit
 
 class DestinationCell: UICollectionViewCell {
     
+    // MARK: - Outlets
+
     @IBOutlet weak var destinationBackgroundImage: UIImageView!
     
     @IBOutlet weak var destinationLabel: UILabel!
@@ -18,8 +20,11 @@ class DestinationCell: UICollectionViewCell {
     
     @IBOutlet weak var tickImage: UIImageView!
     
+    // MARK: - Life cycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
         self.blueGradientView.applyGradient(withColours: [Colors.firstGradientColor, UIColor.clear], alpha: 0.8, angle: 90)
     }
