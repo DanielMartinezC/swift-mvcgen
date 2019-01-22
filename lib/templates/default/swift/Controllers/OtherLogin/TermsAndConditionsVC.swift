@@ -14,7 +14,7 @@ class TermsAndConditionsVC: UIViewController {
         didSet{
             self.registerButtonOutlet.layer.cornerRadius = self.registerButtonOutlet.frame.height/7
             self.registerButtonOutlet.layer.masksToBounds = true
-            self.registerButtonOutlet.activityIndicatorColor = Colors.firstGradientColor
+            self.registerButtonOutlet.activityIndicatorColor = ColorConstants.firstGradientColor
         }
     }
     @IBOutlet weak var termsAndConditions: UIButton!{
@@ -28,7 +28,7 @@ class TermsAndConditionsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.applyGradient(withColours: [Colors.firstGradientColor, Colors.secondGradientColor, Colors.thirdGradientColor], locations: [0, 0.2, 0.98])
+        self.view.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.secondGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.2, 0.98])
         // Do any additional setup after loading the view.
     }
 
@@ -39,8 +39,8 @@ class TermsAndConditionsVC: UIViewController {
     
     @IBAction func acceptTermsTapped(_ sender: UIButton) {
         if !acceptTermsAndConditions {
-            sender.setImage(UIImage(named: "Tick"), for: .normal)
-            sender.bringSubview(toFront: sender.imageView!)
+            sender.setImage(Asset.tick.image, for: .normal)
+            sender.bringSubviewToFront(sender.imageView!)
             self.acceptTermsAndConditions = true
             //registerButton.isEnabled = true
         } else {

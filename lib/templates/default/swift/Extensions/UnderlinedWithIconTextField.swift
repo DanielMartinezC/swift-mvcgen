@@ -49,7 +49,7 @@ class UnderlinedWithIconTextField: UITextField {
         imageView.bounds = imageView.frame.insetBy(dx: 15.0, dy: 0.0);
         
         self.leftView = leftView
-        self.leftViewMode = UITextFieldViewMode.always
+        self.leftViewMode = UITextField.ViewMode.always
         
     }
 }

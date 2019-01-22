@@ -1,4 +1,4 @@
 module MVCgen
   NAME = "mvcgen"
-  VERSION = "0.1.20"
+  VERSION = "0.2.1"
 end

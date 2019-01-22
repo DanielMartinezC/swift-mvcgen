@@ -29,7 +29,7 @@ extension UIView {
         shadowLayer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         shadowLayer.shadowOpacity = shadowOpacity
         shadowLayer.shadowRadius = shadowSize
-        shadowLayer.fillRule = kCAFillRuleEvenOdd
+        shadowLayer.fillRule = CAShapeLayerFillRule.evenOdd
         
         // define shadow path
         let shadowPath = CGMutablePath()

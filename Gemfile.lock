@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mvcgen (0.1.20)
+    mvcgen (0.2.1)
       thor
 
 GEM
@@ -44,6 +44,9 @@ DEPENDENCIES
   bundler (~> 1.0)
   byebug
   codeclimate-test-reporter
+  mvcgen!
   rake
   rspec
-  mvcgen!
+
+BUNDLED WITH
+   1.16.4

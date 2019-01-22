@@ -33,7 +33,7 @@ class TutorialVC: UIViewController {
         view.addSubview(onboarding)
         
         // Add constraints
-        for attribute: NSLayoutAttribute in [.left, .right, .top, .bottom] {
+        for attribute: NSLayoutConstraint.Attribute in [.left, .right, .top, .bottom] {
             let constraint = NSLayoutConstraint(item: onboarding,
                                                 attribute: attribute,
                                                 relatedBy: .equal,
@@ -43,7 +43,7 @@ class TutorialVC: UIViewController {
                                                 constant: 0)
             view.addConstraint(constraint)
         }
-        self.view.bringSubview(toFront: skipButton);
+        self.view.bringSubviewToFront(skipButton);
     }
 
 }
@@ -92,25 +92,25 @@ extension TutorialVC: PaperOnboardingDataSource {
                                title: welcomeLabel,
                                description: "First tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
-                               color: Colors.firstGradientColor,
+                               color: ColorConstants.firstGradientColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
             OnboardingItemInfo(informationImage: Asset.welcome_02.image,
                                title: "",
                                description: "Second tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
-                               color: Colors.secondGradientColor,
+                               color: ColorConstants.secondGradientColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
             OnboardingItemInfo(informationImage: Asset.welcome_03.image,
                                title: "",
                                description: "Third tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
-                               color: Colors.thirdGradientColor,
+                               color: ColorConstants.thirdGradientColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
             OnboardingItemInfo(informationImage: Asset.welcome_04.image,
                                title: "",
                                description: "Final tutorial message!",
                                pageIcon: UIImage(named: "Tick")!,
-                               color: Colors.textColor,
+                               color: ColorConstants.textColor,
                                titleColor: UIColor.white, descriptionColor: UIColor.white, titleFont: titleFont, descriptionFont: descriptionFont),
         ]
         return list[index]

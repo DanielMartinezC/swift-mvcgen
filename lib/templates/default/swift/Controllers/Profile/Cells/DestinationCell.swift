@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DestinationCell: UICollectionViewCell {
     
@@ -26,15 +27,22 @@ class DestinationCell: UICollectionViewCell {
         super.awakeFromNib()
         
         // Initialization code
-        self.blueGradientView.applyGradient(withColours: [Colors.firstGradientColor, UIColor.clear], alpha: 0.8, angle: 90)
+        self.blueGradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, UIColor.clear], alpha: 0.8, angle: 90)
     }
     
     override var isSelected: Bool {
         didSet {
             self.layer.borderWidth = 1.0
-            self.layer.borderColor = isSelected ? Colors.firstGradientColor.cgColor : UIColor.clear.cgColor
-            self.blueGradientView.backgroundColor = isSelected ? Colors.thirdGradientColor : UIColor.clear
+            self.layer.borderColor = isSelected ? ColorConstants.firstGradientColor.cgColor : UIColor.clear.cgColor
+            self.blueGradientView.backgroundColor = isSelected ? ColorConstants.thirdGradientColor : UIColor.clear
             self.tickImage.image = isSelected ? UIImage(named: "Tick") : nil
         }
+    }
+
+    func configure(with userHistory: UserHistory) {
+        
+        self.destinationLabel.text = userHistory.name.capitalized
+        self.destinationBackgroundImage.kf.indicatorType = .activity
+        self.destinationBackgroundImage.kf.setImage(with: URL(string: userHistory.thumbnailUrl), options: [.transition(.fade(0.2))])
     }
 }

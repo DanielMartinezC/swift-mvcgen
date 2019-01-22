@@ -102,7 +102,7 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
             sender.setImage(tintedImage, for: .normal)
             sender.tintColor = UIColor.init(red: 51/255, green: 125/255, blue: 173/255, alpha: 1.0)
             if let image = sender.imageView {
-                sender.bringSubview(toFront: image)
+                sender.bringSubviewToFront(image)
             }
             termsAndConditionsAccepted = true
         } else {
@@ -139,38 +139,38 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
         
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
                                                                        attributes: [
-                                                                           NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                                                                           NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                           NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                                           NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)
                                                                            ])
         
         self.nameTextField.attributedPlaceholder = NSAttributedString(string: "Name",
                                                                           attributes: [
-                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
-                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              NSAttributedString.Key.foregroundColor: UIColor.lightGray, 
+                                                                              NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)
                                                                               ])
         
         self.lastnameTextField.attributedPlaceholder = NSAttributedString(string: "Lastname",
                                                                           attributes: [
-                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
-                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              NSAttributedString.Key.foregroundColor: UIColor.lightGray, 
+                                                                              NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)
                                                                               ])
         
         self.cellphoneTextField.attributedPlaceholder = NSAttributedString(string: "Cellphone (optional)",
                                                                           attributes: [
-                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                                                              NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)
                                                                             ])
         
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                           attributes: [
-                                                                              NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
-                                                                              NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                              NSAttributedString.Key.foregroundColor: UIColor.lightGray, 
+                                                                              NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)
                                                                               ])
         
         self.confirmPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Confirm password",
                                                                             attributes: [
-                                                                                NSAttributedStringKey.foregroundColor: UIColor.lightGray, 
-                                                                                NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)
+                                                                                NSAttributedString.Key.foregroundColor: UIColor.lightGray, 
+                                                                                NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)
                                                                                 ])
     }
     
@@ -186,7 +186,7 @@ class RegisterVC: UITableViewController, UITextFieldDelegate {
         pastelView.animationDuration = 3.0
         
         // Custom Color
-        pastelView.setColors([Colors.firstGradientColor, Colors.textColor, Colors.secondGradientColor, Colors.thirdGradientColor])
+        pastelView.setColors([ColorConstants.firstGradientColor, ColorConstants.textColor, ColorConstants.secondGradientColor, ColorConstants.thirdGradientColor])
         
         self.tableView.backgroundView = pastelView
         

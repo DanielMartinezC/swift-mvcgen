@@ -18,25 +18,90 @@ module MVCgen
 			proj = Xcodeproj::Project.open(project_file)
 
 			# TODO: view this to improve path files: allowable_project_paths
+			# self.add_files_togroup(filespath, proj, proj.main_group, proj.targets.first)
 			self.addxcodefiles(filespath,proj.main_group,proj.targets.first)
 			
 			proj.save
 			puts "Finish adding files"
 		end
 
+		def self.is_resource_group(file)
+			extname = file[/\.[^\.]+$/]
+			if extname == '.bundle' || extname == '.xcassets' then
+				return true
+			end
+			return false
+		end
+		
+		# def self.add_files_togroup(direc, project, group, target)
+		# 	if File.exist?(Dir.glob(direc))
+		
+		# 		Dir.glob(direc) do |entry|
+		# 			filePath = File.join(group.path, entry)
+		
+		# 			# puts filePath
+		
+		# 			if filePath.to_s.end_with?(".DS_Store", ".xcconfig") then
+		# 				# ignore
+		
+		# 			elsif filePath.to_s.end_with?(".lproj") then
+		# 				if @variant_group.nil?
+		# 					@variant_group = group.new_variant_group("Localizable.strings");
+		# 				end
+		# 				string_file = File.join(filePath, "Localizable.strings")
+		# 				fileReference = @variant_group.new_reference(string_file)
+		# 				target.add_resources([fileReference])
+		
+		# 			elsif self.is_resource_group(entry) then
+		# 				fileReference = group.new_reference(filePath)
+		# 				target.add_resources([fileReference])
+		# 			elsif !File.directory?(filePath) then
+		
+		# 				fileReference = group.new_reference(filePath)
+		# 				if filePath.to_s.end_with?(".swift", ".mm", ".m", ".cpp") then
+		# 					target.add_file_references([fileReference])		
+		# 				elsif filePath.to_s.end_with?(".pch") then
+		
+		# 				elsif filePath.to_s.end_with?("Info.plist") && entry == "Info.plist" then
+		
+		# 				elsif filePath.to_s.end_with?(".h") then
+		# 					# target.headers_build_phase.add_file_reference(fileReference)
+		# 				elsif filePath.to_s.end_with?(".framework") || filePath.to_s.end_with?(".a") then
+		# 					target.frameworks_build_phases.add_file_reference(fileReference)
+		# 				elsif 
+		# 					target.add_resources([fileReference])
+		# 				end
+		# 			elsif File.directory?(filePath) && entry != '.' && entry != '..' then
+		
+		# 				subGroup = group.find_subpath(entry, true)
+		# 				subGroup.set_source_tree(group.source_tree)
+		# 				subGroup.set_path(File.join(group.path, entry))
+		# 				add_files_togroup(project, target, subGroup)
+		
+		# 			end
+		# 		end
+		# 	end
+		# end
+		
 		def self.addxcodefiles(direc, current_group, main_target)
 			Dir.glob(direc) do |item|
 				next if item == '.' or item == '.DS_Store'
 					if File.directory?(item)
-					new_folder = File.basename(item)
-					created_group = current_group.new_group(new_folder)
-					self.addxcodefiles("#{item}/*", created_group, main_target)
-				elsif item == "Assets.xcassets"
-					main_target.add_frameworks_bundles([item])
-					break
-				else 
-				  i = current_group.new_file(item)
-				  main_target.add_file_references([i])
+						new_folder = File.basename(item)
+						created_group = current_group.new_group(new_folder)
+						self.addxcodefiles("#{item}/*", created_group, main_target)
+				elsif self.is_resource_group(item) then
+					# fileReference = current_group.new_reference(filePath)
+					# i = current_group.new_reference(item)
+					# main_target.add_resources([fileReference])
+					ain_target.add_frameworks_bundles([item])
+				# elsif item == "Assets.xcassets"
+				# 	main_target.add_frameworks_bundles([item])
+				# 	break
+				else
+					# i = current_group.new_reference(filePath)
+				  	i = current_group.new_file(item)
+				  	main_target.add_file_references([i])
 				end
 			end
 		end

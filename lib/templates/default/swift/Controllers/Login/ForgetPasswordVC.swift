@@ -44,8 +44,8 @@ class ForgetPasswordVC: UIViewController, UIGestureRecognizerDelegate {
         
         self.backgroundView.addGestureRecognizer(tap)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: .UIKeyboardWillShow, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHidden), name: .UIKeyboardWillHide, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHidden), name: UIResponder.keyboardWillHideNotification, object: nil);
 
     }
 
@@ -110,8 +110,9 @@ class ForgetPasswordVC: UIViewController, UIGestureRecognizerDelegate {
                     APIHelper.sharedInstance.showSuccesMessage(with: "Email sent!", and: "")
                 }
             })
-        } else {
-            APIHelper.sharedInstance.showErrorMessage(with: "Invalid email", and: "")
+            } else {
+                APIHelper.sharedInstance.showErrorMessage(with: "Invalid email", and: "")
+            }
         }
     }
     

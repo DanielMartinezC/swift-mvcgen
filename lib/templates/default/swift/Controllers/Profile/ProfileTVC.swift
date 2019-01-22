@@ -116,7 +116,7 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     
     // MARK: - Properties
     
-    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+    private let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
     
     var profileImageChanged: Bool = false
 
@@ -348,13 +348,15 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     @IBAction func handleEditProfileImageButton(_ sender: Any) {
         
         let pickerController = DKImagePickerController()
-        pickerController.UIDelegate = CustomUIDelegate()
+        
+        DKImageExtensionController.registerExtension(extensionClass: CustomCamera.self, for: .camera)
+        
         pickerController.assetType = .allPhotos
         pickerController.singleSelect = true
         pickerController.didSelectAssets = { (assets: [DKAsset]) in
             for asset in assets {
                 //Gets a fullscreen image for the asset to show in the CollectionView
-                asset.fetchFullScreenImageWithCompleteBlock({ (image, info) in
+                asset.fetchFullScreenImage(completeBlock: { (image, info) in
                     
                     self.profileImageChanged = true
                     self.editProfileImageView.image = image
@@ -459,10 +461,10 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
             self.phoneCountry = prevPhoneCountryValue
             return }, origin: sender)
         
-        acp?.setTextColor(Colors.firstGradientColor)
+        acp?.setTextColor(ColorConstants.firstGradientColor)
         acp?.pickerBackgroundColor = UIColor.white
         acp?.toolbarBackgroundColor = UIColor.white
-        acp?.toolbarButtonsColor = Colors.firstGradientColor
+        acp?.toolbarButtonsColor = ColorConstants.firstGradientColor
         acp?.show()
     }
     
@@ -482,18 +484,6 @@ class ProfileTVC: UITableViewController, UITextFieldDelegate, NotificationReadPr
     
     @objc func handleFavoritesUpdated(_ notification: Foundation.Notification) {
         //TODO: Get favorites again
-    }
-    
-}
-
-open class CustomUIDelegate: DKImagePickerControllerDefaultUIDelegate {
-    
-    open override func imagePickerControllerCreateCamera(_ imagePickerController: DKImagePickerController) -> UIViewController {
-        
-        let picker = CustomCamera()
-        picker.sourceType = .camera
-        picker.mediaTypes = [kUTTypeImage as String]
-        return picker
     }
     
 }
@@ -530,7 +520,7 @@ extension ProfileTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             
             let history = userHistory[indexPath.row]
 
-            cell.configure(with: userHistory)
+            cell.configure(with: history)
 
             return cell
         }
@@ -550,7 +540,7 @@ extension ProfileTVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if collectionView == favoritesCollectionView {
-            let size = (favorites[indexPath.row].name as NSString).size(withAttributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 16.0)])
+            let size = (favorites[indexPath.row].name as NSString).size(withAttributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16.0)])
             return CGSize(width: size.width + 65, height: 40)
         } else {
             return CGSize(width: 200, height: 100)

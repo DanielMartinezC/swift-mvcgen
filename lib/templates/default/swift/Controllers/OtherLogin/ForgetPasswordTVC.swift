@@ -42,7 +42,7 @@ class ForgetPasswordTVC: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.backgroundGradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.secondGradientColor, Colors.thirdGradientColor], locations: [0, 0.2, 0.98])
+        self.backgroundGradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.secondGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.2, 0.98])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

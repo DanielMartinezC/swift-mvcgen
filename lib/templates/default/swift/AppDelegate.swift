@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
     private let loginStoryboard = UIStoryboard(name: "Login", bundle: Bundle.main)
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         UIApplication.shared.statusBarStyle = .lightContent
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
     }
     
-    func setupOneSignal(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?){
+    func setupOneSignal(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?){
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         // Replace 'YOUR_APP_ID' with your OneSignal App ID.
         OneSignal.initWithLaunchOptions(launchOptions,

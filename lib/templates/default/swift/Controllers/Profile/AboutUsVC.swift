@@ -55,7 +55,7 @@ class AboutUsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     override func viewDidLayoutSubviews() {
         view.backgroundColor = UIColor.clear
         
-        self.gradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.thirdGradientColor], locations: [0, 0.5])
+        self.gradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.5])
     }
     
     // MARK: - Actions
@@ -68,7 +68,7 @@ class AboutUsVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
     private func setup() {
         
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         let tintedImage = Asset.back.image.withRenderingMode(.alwaysTemplate)
         self.backButton.setImage(tintedImage, for: .normal)
         self.backButton.tintColor = UIColor(red: 107.0/255.0, green: 255.0/255.0, blue: 192.0/255.0, alpha: 1)

@@ -131,6 +131,10 @@ gem push mvcgen-0.1.gem
 ```
 Then you'll be asked for your credentials in order to make the update in the repo (http://guides.rubygems.org/publishing/)
 
+To remove previous gem versions:
+```
+gem cleanup mvcgen
+```
 ### Add a new template
 Are you interested in this project and you would like to contribute by adding new templates? Feel free to do it. It's pretty easy. You've just to:
 - Create a folder inside `templates` with the name of your template

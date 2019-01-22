@@ -48,7 +48,7 @@ class NotificationCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.notificationImage.image =  Asset.tick.notifications
+        self.notificationImage.image = Asset.notifications.image
         
         self.newNotificationView.isHidden = true
     }
@@ -59,10 +59,9 @@ class NotificationCell: UITableViewCell {
         
         self.newNotificationView.isHidden = notification.read
 
-        let region = Region.Local()
-        let dateB = DateInRegion(absoluteDate: notification.createdDate as Date, in: region)
-        let (colloquial, _) = try! dateB.colloquialSinceNow()
-        self.notificationDate.text = colloquial
+        let region = Region.local
+        let dateB = DateInRegion(notification.createdDate as Date, region: region)
+        self.notificationDate.text = dateB.toRelative()
 
         // In case you need to config something by notif type:
         // switch notification.notifType{

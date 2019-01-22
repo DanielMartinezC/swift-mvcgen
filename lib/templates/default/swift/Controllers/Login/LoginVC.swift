@@ -37,7 +37,7 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
     
     // MARK: - Properties
 
-    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+    private let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
 
     private var pastelView: PastelView!
     
@@ -150,16 +150,16 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
     private func configureText(){
         
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Email", comment: ""),
-                                                                       attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+                                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)])
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
-                                                                          attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray, NSAttributedStringKey.font: Fonts.roboto(type: 1, fontSize: 17)])
+                                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: Fonts.roboto(type: 1, fontSize: 17)])
         
         let normalText = NSLocalizedString("Forget your password?", comment: "")
-        let normalAttrs = [NSAttributedStringKey.font : Fonts.roboto(type: 0, fontSize: 15)]
+        let normalAttrs = [NSAttributedString.Key.font : Fonts.roboto(type: 0, fontSize: 15)]
         let normalString = NSMutableAttributedString(string:normalText,attributes: normalAttrs)
         
         let boldText  = NSLocalizedString(" Restore", comment: "")
-        let attrs = [NSAttributedStringKey.font : Fonts.roboto(type: 4, fontSize: 15)]
+        let attrs = [NSAttributedString.Key.font : Fonts.roboto(type: 4, fontSize: 15)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
         
         normalString.append(attributedString)
@@ -179,7 +179,7 @@ class LoginVC: UITableViewController, UITextFieldDelegate, ForgetPasswordVCDeleg
         pastelView.animationDuration = 3.0
         
         // Custom Color
-        pastelView.setColors([Colors.firstGradientColor, Colors.textColor, Colors.secondGradientColor, Colors.thirdGradientColor])
+        pastelView.setColors([ColorConstants.firstGradientColor, ColorConstants.textColor, ColorConstants.secondGradientColor, ColorConstants.thirdGradientColor])
         
         self.tableView.backgroundView = pastelView
         

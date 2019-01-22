@@ -18,7 +18,7 @@ class ProfileContainerVC: UIViewController {
 
     // MARK: - Properties
     
-    private static let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
+    private let homeStoryboard = UIStoryboard(name: "Home", bundle: Bundle.main)
 
     private lazy var profileTVC: ProfileTVC = { 
         return self.homeStoryboard.instantiateViewController(withIdentifier: "ProfileTVC") as! ProfileTVC 
@@ -37,7 +37,7 @@ class ProfileContainerVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
                 
-        self.gradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.thirdGradientColor], locations: [0, 0.5])
+        self.gradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.5])
     }
 
     // MARK: - Private
@@ -59,18 +59,18 @@ class ProfileContainerVC: UIViewController {
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Notify Child View Controller
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
     }
     
     private func remove(asChildViewController viewController: UIViewController) {
 
         // Notify Child View Controller
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         
         viewController.view.removeFromSuperview()
         
         // Notify Child View Controller
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
     
 }

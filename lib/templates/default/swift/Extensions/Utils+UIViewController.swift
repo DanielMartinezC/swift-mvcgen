@@ -18,7 +18,7 @@ extension UIViewController {
     }
     
     func setSelectedColors(backgroundView: UIView, label: UILabel) {
-        backgroundView.backgroundColor = Colors.firstGradientColor
+        backgroundView.backgroundColor = ColorConstants.firstGradientColor
         label.textColor = UIColor.white
     }
     

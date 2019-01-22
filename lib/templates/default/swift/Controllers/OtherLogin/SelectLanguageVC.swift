@@ -41,7 +41,7 @@ class SelectLanguageVC: UITableViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.gradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.secondGradientColor, Colors.thirdGradientColor], locations: [0, 0.2, 0.98])
+        self.gradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.secondGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.2, 0.98])
     }
     
     @IBAction func registerTapped(_ sender: UIButton) {

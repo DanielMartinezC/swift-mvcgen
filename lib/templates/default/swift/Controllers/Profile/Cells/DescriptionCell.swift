@@ -15,12 +15,5 @@ class DescriptionCell: UITableViewCell {
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
-    func configure(with userHistory: UserHistory) {
-
-        self.destinationLabel.text = userHistory.name.capitalized
-        self.destinationBackgroundImage.kf.indicatorType = .activity
-        self.destinationBackgroundImage.kf.setImage(with: URL(string: history.thumbnailUrl), options: [.transition(.fade(0.2))])
-    }
-    
 }
 

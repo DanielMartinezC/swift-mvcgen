@@ -52,12 +52,12 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.gradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.thirdGradientColor], locations: [0, 0.5])
+        self.gradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.5])
     }
     
     private func setup() {
         
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         
         let tintedImage = Asset.back.image.withRenderingMode(.alwaysTemplate)
         self.backButton.setImage(tintedImage, for: .normal)
@@ -73,7 +73,7 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewWillDisappear(animated)
         
         // Mark all notifications as read
-        if self.isMovingFromParentViewController{
+        if self.isMovingFromParent{
             delegate?.setAsRead(value: true)
         }
     }
@@ -131,17 +131,19 @@ class NotificationsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         self.selectedNotification = self.notifications[indexPath.row]
         
-        switch selectedNotif.notifType {
-        case .broadcast:
-            self.tableView.isUserInteractionEnabled = true
-            break
-        case .generic:
-            self.tableView.isUserInteractionEnabled = true
-            //Perform segue to detail
-            break
-        default:
-            self.tableView.isUserInteractionEnabled = true
-            break
+        if let notifType = selectedNotification?.notifType {
+            switch notifType {
+            case .broadcast:
+                self.tableView.isUserInteractionEnabled = true
+                break
+            case .generic:
+                self.tableView.isUserInteractionEnabled = true
+                //Perform segue to detail
+                break
+            default:
+                self.tableView.isUserInteractionEnabled = true
+                break
+            }
         }
     }
 

@@ -254,7 +254,7 @@ class APIManager {
         var parms: [String : Any] = [:]
         
         // TODO check utc
-        parms["date"] = Date().string(custom: "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        parms["date"] = Date().timeIntervalSince1970*1000
         
         Alamofire.request(APIHelper.sharedInstance.servicesURL + Endpoints.readNotifications, method: .post, parameters: parms,
                           encoding: JSONEncoding.default,

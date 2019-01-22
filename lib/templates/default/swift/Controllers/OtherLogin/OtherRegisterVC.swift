@@ -59,7 +59,7 @@ class OtherRegisterVC: UITableViewController, UITextFieldDelegate {
         self.registerButton.layoutIfNeeded()
         self.registerButton.layer.cornerRadius = self.registerButton.frame.height/7
         self.registerButton.layer.masksToBounds = true
-        self.registerButton.activityIndicatorColor = Colors.firstGradientColor
+        self.registerButton.activityIndicatorColor = ColorConstants.firstGradientColor
         
         emailTextField.underlined(color: UIColor.white, width: 1.0)
         nameTextField.underlined(color: UIColor.white, width: 1.0)
@@ -96,7 +96,7 @@ class OtherRegisterVC: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.gradientView.applyGradient(withColours: [Colors.firstGradientColor, Colors.secondGradientColor, Colors.thirdGradientColor], locations: [0, 0.2, 0.98])
+        self.gradientView.applyGradient(withColours: [ColorConstants.firstGradientColor, ColorConstants.secondGradientColor, ColorConstants.thirdGradientColor], locations: [0, 0.2, 0.98])
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -138,8 +138,8 @@ class OtherRegisterVC: UITableViewController, UITextFieldDelegate {
     
     @IBAction func acceptTermsTapped(_ sender: UIButton) {
         if !termsAndConditionsAccepted {
-            sender.setImage(UIImage(named: "Tick"), for: .normal)
-            sender.bringSubview(toFront: sender.imageView!)
+            sender.setImage(Asset.tick.image, for: .normal)
+            sender.bringSubviewToFront(sender.imageView!)
             termsAndConditionsAccepted = true
             //registerButton.isEnabled = true
         } else {
@@ -287,10 +287,10 @@ class OtherRegisterVC: UITableViewController, UITextFieldDelegate {
             return
         }, origin: sender)
         
-        acp?.setTextColor(Colors.firstGradientColor)
+        acp?.setTextColor(ColorConstants.firstGradientColor)
         acp?.pickerBackgroundColor = UIColor.white
         acp?.toolbarBackgroundColor = UIColor.white
-        acp?.toolbarButtonsColor = Colors.firstGradientColor
+        acp?.toolbarButtonsColor = ColorConstants.firstGradientColor
         acp?.show()
     }
     
