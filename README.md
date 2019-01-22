@@ -62,18 +62,19 @@ The implementation scheme returned by this generator is hardly inspired in the e
 |   +-- Tutorial
 |   |   +-- TutorialVC.swift
 +-- Extensions
-|   +-- UIColorExtensions.swift
-|   +-- GradientView.swift
-|   +-- ArrayDuplicates.swift
-|   +-- Images.swift
-|   +-- HideKeyboard.swift
-|   +-- InnerShadowExtension.swift
-|   +-- CustomCamera.swift
-|   +-- TableViewEmptyView.swift
 |   +-- Buttons.swift
-|   +-- TapEffectExtension.swift
+|   +-- CustomCamera.swift
 |   +-- UnderlinedWithIconTextField.swift
 |   +-- UnderlinedTextView.swift
+|   +-- Utils+Array.swift
+|   +-- Utils+Images.swift
+|   +-- Utils+String.swift
+|   +-- Utils+UIButton.swift
+|   +-- Utils+UIColor.swift
+|   +-- Utils+UITableView.swift
+|   +-- Utils+UITextField.swift
+|   +-- Utils+UIView.swift
+|   +-- Utils+UIViewController.swift
 +-- Models
 |   +-- Notif.swift
 |   +-- Country.swift
