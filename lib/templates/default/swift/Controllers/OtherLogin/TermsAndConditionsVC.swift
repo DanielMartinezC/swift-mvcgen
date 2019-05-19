@@ -52,8 +52,9 @@ class TermsAndConditionsVC: UIViewController {
 
     @IBAction func viewTermsAndConditions(_ sender: Any) {
         // TODO: View url
-        if let url = URL(string: "http://notatourapp.com/terms-and-conditions") {
+        if let url = URL(string: "http://myproject.com/terms-and-conditions") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            
         }
     }
     
